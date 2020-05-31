@@ -1,0 +1,44 @@
+cc_defaults {
+    name: "rmnet_defaults",
+    local_include_dirs: [
+        "inc",
+        "src",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+}
+
+cc_binary {
+    name: "rmnetcli",
+    vendor: true,
+
+    defaults: ["rmnet_defaults"],
+
+    srcs: ["cli/rmnetcli.c"],
+
+    local_include_dirs: [
+        "cli",
+    ],
+
+    shared_libs: ["librmnetctl"],
+}
+
+cc_library_shared {
+    name: "librmnetctl",
+    vendor: true,
+
+    defaults: ["rmnet_defaults"],
+
+    header_libs: [
+        "device_kernel_headers",
+    ],
+
+    srcs: ["src/librmnetctl.c"],
+
+    // To export librmnetctl.h to proprietary parts
+    export_include_dirs: [
+        "inc",
+    ],
+}
