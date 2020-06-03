@@ -1,0 +1,19 @@
+cc_binary {
+    name: "datatop",
+    vendor: true,
+
+    srcs: [
+        "src/*.c",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        //"-std=c99",
+        "-DVERSION=\"1.0.4\"",
+        "-DHAVE_STRL_FUNCTIONS",
+        "-D_BSD_SOURCE",
+    ],
+}
